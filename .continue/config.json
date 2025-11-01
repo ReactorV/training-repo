@@ -1,0 +1,118 @@
+{
+    "$schema": "https://raw.githubusercontent.com/continuedev/continue/main/config-schema.json",
+    "models": {
+      "default": {
+        "provider": "openai",
+        "model": "gpt-5",
+        "temperature": 0.2,
+        "maxTokens": 6000
+      },
+      "fast": {
+        "provider": "openai",
+        "model": "gpt-4o-mini",
+        "temperature": 0.1,
+        "maxTokens": 3000
+      },
+      "deep": {
+        "provider": "openai",
+        "model": "gpt-4o",
+        "temperature": 0.2,
+        "maxTokens": 12000
+      },
+      "ultra": {
+        "provider": "openai",
+        "model": "o1",
+        "reasoningEffort": "medium",
+        "maxTokens": 25000
+      },
+      "ultraPlus": {
+        "provider": "openai",
+        "model": "o1-mini",
+        "reasoningEffort": "high",
+        "maxTokens": 32000
+      },
+      "claude": {
+        "provider": "anthropic",
+        "model": "claude-3-5-sonnet",
+        "temperature": 0.2,
+        "maxTokens": 20000
+      },
+      "gemini": {
+        "provider": "google",
+        "model": "gemini-1.5-pro",
+        "temperature": 0.2,
+        "maxTokens": 20000
+      }
+    },
+  
+    "systemMessage": "You are a senior front-end engineer assisting with a TypeScript/React/Relay codebase. Write concise, correct code and thoughtful reasoning. Prefer functional components, TypeScript safety, and Jest for unit tests. Avoid speculative APIs.",
+  
+    "slashCommands": [
+      {
+        "name": "think",
+        "description": "Extended reasoning on the current task (Claude /think analogue).",
+        "model": "deep",
+        "prompt": [
+          "Think step-by-step before answering.",
+          "List at least two alternative approaches.",
+          "Choose the most maintainable and efficient one.",
+          "Then produce the minimal diff or code block to implement it.",
+          "Context (selected code if any): {{selection}}"
+        ],
+        "useSelection": true
+      },
+      {
+        "name": "ultra",
+        "description": "Maximum reasoning depth (Claude mega-think analogue).",
+        "model": "ultraPlus",
+        "prompt": [
+          "Perform deep reasoning with explicit assumptions and trade-offs.",
+          "Return: (1) summarized reasoning chain, (2) comparison table, (3) chosen plan, (4) implementation patch."
+        ],
+        "useSelection": true
+      },
+      {
+        "name": "compact",
+        "description": "Summarize the conversation into a compact reusable context block.",
+        "model": "fast",
+        "prompt": [
+          "Summarize our current session into a short, self-contained context:",
+          "- goals, decisions, unresolved items, next actions.",
+          "- under 250 words.",
+          "Output only the compact summary."
+        ],
+        "responsePrefix": "📦 Compact Context\n"
+      },
+      {
+        "name": "clear",
+        "description": "Reset the conversation (Claude /clear analogue).",
+        "model": "fast",
+        "prompt": [
+          "Return only: 'Session cleared. Start a new prompt.'"
+        ]
+      }
+    ],
+  
+    "context": {
+      "readme": true,
+      "packageJson": true,
+      "gitDiff": true,
+      "gitHistory": 20,
+      "openFiles": true,
+      "repoMap": {
+        "maxFiles": 2500,
+        "maxTokens": 60000,
+        "include": [
+          "src/**/*",
+          "apps/**/*",
+          "packages/**/*",
+          "relay/**/*",
+          "jest.config.*",
+          "tsconfig.*",
+          ".env"
+        ]
+      }
+    }
+  }
+  
+
