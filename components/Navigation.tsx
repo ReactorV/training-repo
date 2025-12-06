@@ -7,6 +7,9 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
+    // Ensure we're on the client side
+    if (typeof window === 'undefined') return;
+    
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });

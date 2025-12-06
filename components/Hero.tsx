@@ -5,6 +5,9 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function Hero() {
   const scrollToContact = () => {
+    // Ensure we're on the client side
+    if (typeof window === 'undefined') return;
+    
     const element = document.getElementById("contact");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -46,6 +49,9 @@ export function Hero() {
             </button>
             <button
               onClick={() => {
+                // Ensure we're on the client side
+                if (typeof window === 'undefined') return;
+                
                 const element = document.getElementById("services");
                 if (element) {
                   element.scrollIntoView({ behavior: "smooth" });
