@@ -2,7 +2,7 @@
   "buildCommand": "yarn build",
   "outputDirectory": ".next",
   "devCommand": "yarn dev",
-  "installCommand": "yarn install --registry https://registry.yarnpkg.com",
+  "installCommand": "node fix-registry.js && yarn config set registry https://registry.yarnpkg.com && yarn install",
   "framework": "nextjs"
 }
 

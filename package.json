@@ -4,6 +4,7 @@
   "description": "Training repo",
   "main": "index.js",
   "scripts": {
+    "preinstall": "node fix-registry.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
