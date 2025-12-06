@@ -27,7 +27,6 @@ export default defineConfig({
   optimizeDeps: {
     force: true, // Force dependency re-optimization on every start
     esbuildOptions: {
-      // Configure esbuild target to match TypeScript config
       target: 'es2020',
     },
     // Explicitly include dependencies to optimize
@@ -35,7 +34,6 @@ export default defineConfig({
   },
   build: {
     emptyOutDir: true,
-    // Increase chunk size warning limit (the Babel/esbuild deoptimization warning is harmless)
     chunkSizeWarningLimit: 1000,
   },
   // Use a custom cache directory that can be easily cleared
