@@ -12,6 +12,11 @@ node_modules
 
 # Production
 /build
+/dist
+
+# Vite
+.vite-cache
+*.local
 
 # Misc
 .DS_Store

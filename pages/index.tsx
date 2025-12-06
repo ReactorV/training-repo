@@ -1,44 +1,30 @@
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
-import Button from '@/components/Button';
+import { Hero } from '@/components/Hero';
+import { About } from '@/components/About';
+import { Services } from '@/components/Services';
+import { Testimonials } from '@/components/Testimonials';
+import { Contact } from '@/components/Contact';
+import { Navigation } from '@/components/Navigation';
 
+// This page is Server-Side Rendered by default in Next.js
+// Components will be rendered on the server unless they have 'use client' directive
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Next.js + React + CSS Modules</title>
-        <meta name="description" content="A basic Next.js application with CSS modules" />
+        <title>Elite Warrior Training - Forge Your Body Into a Weapon</title>
+        <meta name="description" content="Elite warrior training program. No excuses. No weakness. Just raw power and unstoppable strength." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.container}>
-          <h1 className={styles.title}>
-            Welcome to <span className={styles.highlight}>Next.js</span>
-          </h1>
-          <p className={styles.description}>
-            A basic Next.js + React.js + CSS Modules project
-          </p>
-          <div className={styles.grid}>
-            <div className={styles.card}>
-              <h2>Next.js</h2>
-              <p>The React Framework for Production</p>
-            </div>
-            <div className={styles.card}>
-              <h2>React</h2>
-              <p>A JavaScript library for building user interfaces</p>
-            </div>
-            <div className={styles.card}>
-              <h2>CSS Modules</h2>
-              <p>Scoped and modular CSS styling</p>
-            </div>
-          </div>
-          <div className={styles.buttonContainer}>
-            <Button text="Click Me!" />
-            <Button text="Learn More" variant="secondary" />
-          </div>
-        </div>
-      </main>
+      <div className="min-h-screen bg-black">
+        <Navigation />
+        <Hero />
+        <About />
+        <Services />
+        <Testimonials />
+        <Contact />
+      </div>
     </>
   );
 }
