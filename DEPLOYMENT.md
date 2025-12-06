@@ -112,15 +112,38 @@ Vercel automatically deploys:
 - Ensure all dependencies are in `package.json`
 - Check build logs in Vercel dashboard
 
+### Registry/403 Forbidden Errors
+
+If you see errors like:
+```
+error https://delivery-nexus.leo-platform-infra.lvg-tech.net/repository/npm/...: Request failed "403 Forbidden"
+```
+
+This means your project is trying to use a private npm registry. To fix:
+
+1. **Solution 1 (Recommended)**: The project includes `.npmrc` and `.yarnrc` files that force the public registry. Make sure these files are committed to git.
+
+2. **Solution 2**: In Vercel dashboard:
+   - Go to **Settings** → **Environment Variables**
+   - Add: `NPM_CONFIG_REGISTRY` = `https://registry.npmjs.org/`
+   - Add: `YARN_REGISTRY` = `https://registry.yarnpkg.com`
+
+3. **Solution 3**: Switch to npm in `vercel.json`:
+   ```json
+   {
+     "installCommand": "npm install --registry https://registry.npmjs.org/"
+   }
+   ```
+
 ### Styles Not Loading
 
-- Ensure `@tailwindcss/vite` is in `devDependencies`
-- Check that `globals.css` is imported in `main.tsx`
+- Ensure `@tailwindcss/postcss` is in `devDependencies` (for Next.js)
+- Check that `globals.css` is imported in `pages/_app.tsx`
 
 ### Routing Issues
 
-- The `vercel.json` includes SPA routing configuration
-- All routes redirect to `index.html` for client-side routing
+- Next.js handles routing automatically
+- All routes are server-side rendered by default
 
 ## Free Tier Limits
 
